@@ -10,7 +10,7 @@ package zombieGame;
 public class Player {
     private static int health;
     private static final String name = "Jason";
-    private static boolean dead;
+    private static boolean dead; 
 
     /**
      * Constructs a Player with default health (100) and alive status (false).
@@ -71,7 +71,7 @@ public class Player {
      * If health drops to 0 or below, the player dies.
      */
     public static void takeSmallDamage() {
-        health -= 10;
+        health -= 25;
         if (health<=0) {
             die();
         }
@@ -82,7 +82,7 @@ public class Player {
      * If health drops to 0 or below, the player dies.
      */
     public static void takeLargeDamage() {
-        health -= 25;
+        health -= 50;
         if (health<=0) {
             die();
         }
@@ -93,6 +93,15 @@ public class Player {
      */
     private static void die() {
        dead = true;
+       gameOver();
+    }
+
+    private static void gameOver() {
+       System.out.println("_________________________________________");
+       System.out.println("");
+       System.out.println("GAME OVER");
+       System.out.println("");
+       System.out.println("_________________________________________");
     }
 
     public static void main(String[] args) {
