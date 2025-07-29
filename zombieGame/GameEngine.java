@@ -21,6 +21,7 @@ public class GameEngine {
     }
 
     private static void safehouseGame() {
+        emptyLine();
         Scenario scenario1 = new Safehouse();
         System.out.println(scenario1.getDescription());
         emptyLine();
@@ -32,6 +33,7 @@ public class GameEngine {
     }
 
     private static void streetGame() {
+        emptyLine();
         Scenario scenario2 = new Street();
         System.out.println(scenario2.getDescription());
         emptyLine();
@@ -50,6 +52,7 @@ public class GameEngine {
     public static void main(String[] args) {
         new Backpack();
         new Player();
+        emptyLine();
         moveToNextScenario(1);
 
     }

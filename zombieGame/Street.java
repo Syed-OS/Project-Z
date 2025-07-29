@@ -71,13 +71,12 @@ public class Street implements Scenario {
 
         System.out.println("He leaps over a wrecked bike, darts between two cars—");
         System.out.println("—and suddenly, one grabs his arm!");
-    
-        Player.takeLargeDamage(); // He takes heavy damage while escaping
 
-        System.out.println("He tears free, bleeding, and limps toward a fire escape.");
-        System.out.println("Barely managing to pull himself up, he collapses, panting.");
-    
-        System.out.println("\nJason: \"That was too close... but I’m alive.\"");
-        GameEngine.moveToNextScenario(3); 
+        System.out.println("He fights, kicks, claws—but it's too late.");
+        System.out.println("Dozens of hands drag him down. Teeth sink into flesh.");
+        System.out.println("Jason lets out one last scream before everything goes black.");
+
+        Player.takeLargeDamage(); // This will trigger game over and restart if health <= 0
+        Player.takeLargeDamage(); // Ensure death (double hit) 
     }
 }
