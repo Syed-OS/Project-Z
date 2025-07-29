@@ -61,7 +61,7 @@ public class Street implements Scenario {
         System.out.println("Jason gets scratched but manages to duck into an alley.");
     
         System.out.println("\nHe survived, but barely. Time to keep going...");
-        GameEngine.moveToNextScenario(); // Assuming this will be hooked up
+        GameEngine.moveToNextScenario(3); 
     }
 
     public void Choice2() {
@@ -78,6 +78,6 @@ public class Street implements Scenario {
         System.out.println("Barely managing to pull himself up, he collapses, panting.");
     
         System.out.println("\nJason: \"That was too close... but I’m alive.\"");
-        GameEngine.moveToNextScenario(); // Assuming this will be hooked up
+        GameEngine.moveToNextScenario(3); 
     }
 }

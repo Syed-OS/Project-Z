@@ -140,7 +140,7 @@ public class Safehouse implements Scenario {
 
         if (!hasRemainingChoices) {
             System.out.println("Jason has done everything he can in the safehouse. It's time to move on.");
-            GameEngine.moveToNextScenario();
+            GameEngine.moveToNextScenario(2);
             return;
         }
 
