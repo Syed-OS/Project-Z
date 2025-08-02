@@ -45,6 +45,8 @@ public class GameEngine {
     }
 
      private static void garageGame() {
+        emptyLine();
+        
         
 
      }
