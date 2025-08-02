@@ -46,10 +46,15 @@ public class GameEngine {
 
      private static void garageGame() {
         emptyLine();
-        
-        
-
-     }
+        Scenario scenario3 = new Garage();
+        System.out.println(scenario3.getDescription());
+        emptyLine();
+        scenario3.getChoices();
+        System.out.println("Please input a number from 1 to 3");
+        Scanner scan = new Scanner(System.in);
+        int choiceIndex = scan.nextInt();
+        scenario3.applyChoice(choiceIndex);
+    }
 
     public static void main(String[] args) {
         new Backpack();

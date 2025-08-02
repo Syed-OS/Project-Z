@@ -5,12 +5,14 @@ import java.util.Scanner;
 public class Garage implements Scenario {
 
     String[] choiceSet1;
+    boolean hasKey = false;
+    boolean hasBattery = false;
 
     public Garage() {
         choiceSet1 = new String[3];
-        choiceSet1[0] = "1. [Placeholder] Check the left side of the garage";
-        choiceSet1[1] = "2. [Placeholder] Approach the workbench";
-        choiceSet1[2] = "3. [Placeholder] Inspect the lockers";
+        choiceSet1[0] = "1. Check the locker on the left wall";
+        choiceSet1[1] = "2. Inspect the workbench";
+        choiceSet1[2] = "3. Examine the large drawer at the back";
     }
 
     @Override
@@ -59,38 +61,56 @@ public class Garage implements Scenario {
         System.out.println("Jason walks cautiously along the left wall of the garage.");
         System.out.println("Among piles of rusted tools and dented oil cans, he finds a tall, metal locker.");
         System.out.println("The door rattles but doesn’t open — it's locked with a keypad.");
-        System.out.println("A faint note scratched into the metal reads: \"No power, no spark.\"");
-        System.out.println("Jason: \"Looks like I’ll need a code...\"\n");
+        System.out.println("Scratched into the paint: \"Power rests in two digits.\"");
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("Enter a 3-digit code (-1 to stop trying): ");
+            System.out.print("Enter code (-1 to stop trying): ");
             int input = scanner.nextInt();
 
             if (input == -1) {
-                System.out.println("Jason backs away from the locker for now.");
+                System.out.println("Jason steps back from the locker for now.");
+                break;
+            } else if (input == 83) {
+                System.out.println("The lock clicks. The door swings open with a groan.");
+                System.out.println("Inside, on a dusty shelf, sits a single car key.");
+                System.out.println("Jason takes the key.");
+                hasKey = true;
                 break;
             } else {
-                System.out.println("The lock beeps angrily. That's not it.");
+                System.out.println("The keypad flashes red. Wrong code.");
             }
         }
     }
 
-
     public void Choice2() {
-        System.out.println("Etched into the wood of the bench, almost invisible under the grime:\n");
+        System.out.println("A scrap of paper lies on the bench, barely held down by a rusted wrench.\n");
 
         System.out.println("\"Eight they were, with eyes like coal,");
         System.out.println("Clinging to corners, silent and whole.");
-        System.out.println("Three came after, swift and bright,");
-        System.out.println("Drawn to the whisper, fleeing the light.\"");
+        System.out.println("Three more followed, drawn by breath,");
+        System.out.println("Together they danced a song of death.\"");
 
-        System.out.println("\nThat’s all there is.");
+        System.out.println("\nThere’s nothing else on the bench.");
     }
 
-
     public void Choice3() {
-        System.out.println("[Placeholder] Jason checks the lockers lined up in the back...");
-        // To be implemented with puzzle, key, or jump scare
+        System.out.println("Jason approaches a massive red tool drawer pushed against the back wall.");
+        System.out.println("Thick dust coats the handles. One drawer in the center has a keyhole.");
+
+        if (!hasKey) {
+            System.out.println("He tugs at the handle — locked tight.");
+            System.out.println("Looks like it needs a key.");
+        } else if (!hasBattery) {
+            System.out.println("He slides the key into the drawer and twists.");
+            System.out.println("The lock clicks. The drawer creaks open slowly...");
+            System.out.println("Inside, resting in a nest of wires and tools, is a heavy car battery.");
+            System.out.println("Jason takes it carefully and slings it into his backpack.");
+            hasBattery = true;
+
+            GameEngine.moveToNextScenario(4);
+        } else {
+            System.out.println("The drawer is already open. The battery is gone.");
+        }
     }
 }
