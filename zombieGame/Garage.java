@@ -7,6 +7,8 @@ public class Garage implements Scenario {
     String[] choiceSet1;
     boolean hasKey = false;
     boolean hasBattery = false;
+    boolean lockerOpened = false;
+    boolean drawerOpened = false;
 
     public Garage() {
         choiceSet1 = new String[3];
@@ -30,10 +32,16 @@ public class Garage implements Scenario {
 
     @Override
     public void getChoices() {
-        for (int index = 0; index < choiceSet1.length; index++) {
-            if (choiceSet1[index] != null) {
-                System.out.println(choiceSet1[index]);
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            for (int index = 0; index < choiceSet1.length; index++) {
+                if (choiceSet1[index] != null) {
+                    System.out.println(choiceSet1[index]);
+                }
             }
+            System.out.print("Enter a number from 1 to 3: ");
+            int choiceIndex = scan.nextInt();
+            applyChoice(choiceIndex);
         }
     }
 
@@ -51,15 +59,18 @@ public class Garage implements Scenario {
                 break;
             default:
                 System.out.println("Please input a number from 1 to 3.");
-                Scanner scanner = new Scanner(System.in);
-                int choice = scanner.nextInt();
-                applyChoice(choice);
         }
     }
 
     public void Choice1() {
         System.out.println("Jason walks cautiously along the left wall of the garage.");
         System.out.println("Among piles of rusted tools and dented oil cans, he finds a tall, metal locker.");
+
+        if (lockerOpened) {
+            System.out.println("The locker hangs open. It’s empty now.");
+            return;
+        }
+
         System.out.println("The door rattles but doesn’t open — it's locked with a keypad.");
         System.out.println("Scratched into the paint: \"Power rests in two digits.\"");
 
@@ -76,6 +87,7 @@ public class Garage implements Scenario {
                 System.out.println("Inside, on a dusty shelf, sits a single car key.");
                 System.out.println("Jason takes the key.");
                 hasKey = true;
+                lockerOpened = true;
                 break;
             } else {
                 System.out.println("The keypad flashes red. Wrong code.");
@@ -85,18 +97,21 @@ public class Garage implements Scenario {
 
     public void Choice2() {
         System.out.println("A scrap of paper lies on the bench, barely held down by a rusted wrench.\n");
-
         System.out.println("\"Eight they were, with eyes like coal,");
         System.out.println("Clinging to corners, silent and whole.");
         System.out.println("Three more followed, drawn by breath,");
         System.out.println("Together they danced a song of death.\"");
-
         System.out.println("\nThere’s nothing else on the bench.");
     }
 
     public void Choice3() {
         System.out.println("Jason approaches a massive red tool drawer pushed against the back wall.");
         System.out.println("Thick dust coats the handles. One drawer in the center has a keyhole.");
+
+        if (drawerOpened) {
+            System.out.println("The drawer hangs open. Nothing left inside.");
+            return;
+        }
 
         if (!hasKey) {
             System.out.println("He tugs at the handle — locked tight.");
@@ -107,10 +122,9 @@ public class Garage implements Scenario {
             System.out.println("Inside, resting in a nest of wires and tools, is a heavy car battery.");
             System.out.println("Jason takes it carefully and slings it into his backpack.");
             hasBattery = true;
+            drawerOpened = true;
 
             GameEngine.moveToNextScenario(4);
-        } else {
-            System.out.println("The drawer is already open. The battery is gone.");
         }
     }
 }

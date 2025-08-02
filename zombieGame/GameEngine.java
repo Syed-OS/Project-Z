@@ -44,16 +44,25 @@ public class GameEngine {
         scenario2.applyChoice(choiceIndex);
     }
 
-     private static void garageGame() {
+    private static void garageGame() {
         emptyLine();
-        Scenario scenario3 = new Garage();
+        Garage scenario3 = new Garage();
         System.out.println(scenario3.getDescription());
         emptyLine();
-        scenario3.getChoices();
-        System.out.println("Please input a number from 1 to 3");
+
         Scanner scan = new Scanner(System.in);
-        int choiceIndex = scan.nextInt();
-        scenario3.applyChoice(choiceIndex);
+        while (!scenario3.hasBattery) {
+            for (int index = 0; index < scenario3.choiceSet1.length; index++) {
+                if (scenario3.choiceSet1[index] != null) {
+                    System.out.println(scenario3.choiceSet1[index]);
+                }
+            }
+            emptyLine();
+            System.out.print("Enter a number from 1 to 3: ");
+            emptyLine();
+            int choiceIndex = scan.nextInt();
+            scenario3.applyChoice(choiceIndex);
+        }
     }
 
     public static void main(String[] args) {
