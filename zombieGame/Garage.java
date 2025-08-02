@@ -56,14 +56,38 @@ public class Garage implements Scenario {
     }
 
     public void Choice1() {
-        System.out.println("[Placeholder] Jason explores the left side of the garage...");
-        // To be implemented with actual puzzle logic
+        System.out.println("Jason walks cautiously along the left wall of the garage.");
+        System.out.println("Among piles of rusted tools and dented oil cans, he finds a tall, metal locker.");
+        System.out.println("The door rattles but doesn’t open — it's locked with a keypad.");
+        System.out.println("A faint note scratched into the metal reads: \"No power, no spark.\"");
+        System.out.println("Jason: \"Looks like I’ll need a code...\"\n");
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter a 3-digit code (-1 to stop trying): ");
+            int input = scanner.nextInt();
+
+            if (input == -1) {
+                System.out.println("Jason backs away from the locker for now.");
+                break;
+            } else {
+                System.out.println("The lock beeps angrily. That's not it.");
+            }
+        }
     }
 
+
     public void Choice2() {
-        System.out.println("[Placeholder] Jason approaches the cluttered workbench...");
-        // To be implemented with clues or tools
+        System.out.println("Etched into the wood of the bench, almost invisible under the grime:\n");
+
+        System.out.println("\"Eight they were, with eyes like coal,");
+        System.out.println("Clinging to corners, silent and whole.");
+        System.out.println("Three came after, swift and bright,");
+        System.out.println("Drawn to the whisper, fleeing the light.\"");
+
+        System.out.println("\nThat’s all there is.");
     }
+
 
     public void Choice3() {
         System.out.println("[Placeholder] Jason checks the lockers lined up in the back...");
